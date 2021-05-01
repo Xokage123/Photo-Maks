@@ -1,17 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { Route, Switch, Redirect, BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { createStore, combineReducers } from "redux";
+import photos from "./reducers/photos";
+import currentPhoto from "./reducers/currentPhoto";
+import Authorize from "./connection/authorize";
+import Photos from "./containers/Photos";
+import CurrentPhoto from "./containers/CurrentPhoto";
+// Импортируем стили
+import './GLOBAL.css';
+
+// Создаем хранилище состояний
+const rootReducer = combineReducers({photos, currentPhoto});
+const store = createStore(rootReducer);
+// Присваиваем номер страницы
+localStorage.setItem("page", "1");
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+    <Provider store={store}>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={Authorize} />
+          <Route exact path="/photos" component={Photos} />
+          <Route exact path="/photos/:id" component={CurrentPhoto} />
+          <Redirect to={"/"} />
+        </Switch>
+      </BrowserRouter>
+    </Provider>,
   document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

@@ -1,0 +1,375 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,400;0,700;0,900;1,100&display=swap');
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+body {
+    min-width: 320px;
+    margin: 0;
+    background-color: #f9f9f9;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: black;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    opacity: 0.75;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+h1,
+h2,
+h3,
+p {
+    padding: 0;
+    margin: 0;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+button:active,
+button:focus {
+    outline-style: none;
+}
+
+.visually-hidden {
+    position: absolute !important;
+    clip: rect(1px 1px 1px 1px);
+    clip: rect(1px, 1px, 1px, 1px);
+    padding: 0 !important;
+    border: 0 !important;
+    height: 1px !important;
+    width: 1px !important;
+    overflow: hidden;
+}
+
+.header {
+    margin-bottom: 10px;
+}
+
+.header {
+    padding: 5px;
+    background: #8f8ffc;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    padding: 10px;
+    background: black;
+    color: white;
+}
+
+.header__icon {
+    height: 25px;
+    width: 25px;
+}
+
+.header__logo {
+    width: 100px;
+    height: 25px;
+}
+
+.main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.photos-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.photos-item {
+    margin-top: 20px;
+}
+
+.button-more {
+    cursor: pointer;
+    padding: 10px;
+    color: white;
+    background: #8f8ffc;
+    border: 2px solid rgba(0, 0, 0, 0);
+    border-radius: 20px;
+    transition: border .5s ease-in-out;
+}
+
+.button-more:hover {
+    border: 2px solid red;
+}
+
+.button-more:active {
+    background: red;
+}
+
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.fixed-container {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+header {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    display: block;
+    width: 100%;
+    background-color: white;
+    -webkit-box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
+    box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
+    z-index: 10;
+}
+
+.logo {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo__image {
+    padding: 5px 0;
+}
+
+.logo__user-data {
+    padding-left: 25px;
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Logo_of_Unsplash.svg/768px-Logo_of_Unsplash.svg.png);
+    background-size: 15px 15px;
+    background-repeat: no-repeat;
+    background-position: left center;
+    font-weight: 100;
+}
+
+.photo-gallery__list {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.photo-gallery__item {
+    cursor: pointer;
+    position: relative;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 15px;
+    background-color: white;
+    -webkit-box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
+    box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
+    transition: transform 0.25s ease-in-out;
+}
+
+.photo-gallery__item:hover {
+    transform: scale(1.05);
+}
+
+.photo-gallery__wrapper {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+}
+
+.photo-gallery__heading {
+    padding-bottom: 10px;
+    font-size: 16px;
+    transition: color .4s ease-in-out;
+}
+
+.photo-gallery__heading:hover {
+    color: #8f8ffc;
+}
+
+.photo-gallery__heading:active {
+    color: blue;
+}
+
+.photo-gallery__image {
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.photo-gallery__image:hover {
+    cursor: zoom-in;
+}
+
+.photo-gallery__likes-count {
+    display: block;
+    align-self: center;
+    padding-left: 20px;
+    background-size: 15px 15px;
+    background-repeat: no-repeat;
+    background-position: left center;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.photo-gallery__time {
+    display: block;
+    align-self: flex-end;
+    margin-top: 5px;
+    color: darkgray;
+    font-size: 11px;
+}
+
+.show-more-button {
+    display: block;
+    margin: 0 auto 15px;
+    padding: 15px 55px;
+    border: none;
+    background: black;
+    color: white;
+    -webkit-box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
+    box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
+    font-weight: 900;
+    text-transform: uppercase;
+    transition: background 0.25s linear;
+}
+
+.show-more-button:hover {
+    background: grey;
+}
+
+.overlay-modal {
+    box-sizing: border-box;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.493);
+    top: 0;
+    left: 0;
+    z-index: 15;
+    overflow: auto;
+    width: 100vw;
+    height: 100vh;
+}
+
+.overlay-link {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    cursor: zoom-out;
+}
+
+.full-photo {
+    max-height: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 25px;
+    overflow: auto;
+    border-radius: 15px;
+    background: white;
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.25);
+}
+
+.full-photo__close-button {
+    width: 25px;
+    height: 25px;
+    border: none;
+    background-color: transparent;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.full-photo__close-button:hover {
+    opacity: 0.75;
+}
+
+.full-photo__heading {
+    padding: 10px 0;
+    font-size: 16px;
+}
+
+.full-photo__like-button {
+    display: block;
+    align-self: center;
+    margin: 12px auto;
+    width: 25px;
+    height: 25px;
+    border: none;
+    background-color: transparent;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.full-photo__likes-count {
+    font-weight: bold;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.full-photo__time {
+    display: block;
+    text-align: right;
+    margin-top: 5px;
+    color: darkgray;
+    font-size: 12px;
+    font-weight: 100;
+}
+
+.like-photo__button {
+    width: 20px;
+    height: 20px;
+    border: none;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+@media (max-width: 1050px) {
+    .photo-gallery__list {
+        justify-content: space-around;
+    }
+}
+
+@media (max-width: 400px) {
+    .logo {
+        justify-content: center;
+    }
+    .logo__user-data {
+        display: none;
+    }
+    .photos-list {
+        justify-content: center;
+    }
+}
