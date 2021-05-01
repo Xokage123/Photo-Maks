@@ -52,14 +52,14 @@ function CurrentPhoto(props) {
     if (props.photo.liked_by_user) {
       unsplashUnlikePhoto(id).then(info => {
         info.photo.user = info.user;
-        props.updateArrayPhoto(info.photo);
         props.unlikePhoto(info.photo.likes, info.photo.liked_by_user);
+        props.updateArrayPhoto(info.photo);
       });
     } else {
       unsplashLikePhoto(id).then(info => {
         info.photo.user = info.user;
-        props.updateArrayPhoto(info.photo);
         props.likePhoto(info.photo.likes, info.photo.liked_by_user);
+        props.updateArrayPhoto(info.photo);
       });
     }
   }
