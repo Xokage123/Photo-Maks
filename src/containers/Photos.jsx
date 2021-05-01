@@ -17,6 +17,10 @@ const code = window.location.search.split('code=')[1];
 const FETCH_URL = `https://unsplash.com/oauth/token?client_id=${options.access_key}&client_secret=${options.secret_key}&redirect_uri=${options.URI}&code=${code}&grant_type=${options.grant_type}`;
 getTheToken(FETCH_URL);
 
+window.onscroll = () => {
+  console.log("Листаю!");
+}
+
 function Photos(props) {
   const loadPhotos = () => {
     const page = localStorage.getItem("page");
