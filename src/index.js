@@ -23,7 +23,10 @@ ReactDOM.render(
         <Switch>
           <Route exact path="/" component={Authorize} />
           <Route exact path="/photos" component={Photos} />
-          <Route exact path="/photos/:id" component={CurrentPhoto} />
+          <Route exact path="/photos/:id">
+            <CurrentPhoto />
+            <Photos />
+          </Route>
           <Redirect to={"/"} />
         </Switch>
       </BrowserRouter>

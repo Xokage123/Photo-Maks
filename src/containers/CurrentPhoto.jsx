@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { connect } from "react-redux";
 
 import {
@@ -38,32 +38,36 @@ const styleBack = {
 }
 
 function CurrentPhoto(props) {
+  let { id } = useParams();
   useEffect(() => {
-    document.body.style.overflowY = "hidden";
-    unsplashGetPhoto(props.match.params.id).then(photo => {
+    document.body.style.overflow = "hidden";
+    unsplashGetPhoto(id).then(photo => {
       props.getPhoto(photo);
     });
     return () => {
-      document.body.style.overflowY = "auto";
+      document.body.style.overflow = "auto";
     }
-  }, [props]);
+  }, []);
 
   function likePhoto(id) {
     if (props.photo.liked_by_user) {
       unsplashUnlikePhoto(id).then(info => {
         info.photo.user = info.user;
         props.unlikePhoto(info.photo.likes, info.photo.liked_by_user);
+        props.getPhoto(info.photo);
         props.updateArrayPhoto(info.photo);
       });
     } else {
       unsplashLikePhoto(id).then(info => {
+        console.log(info);
         info.photo.user = info.user;
         props.likePhoto(info.photo.likes, info.photo.liked_by_user);
+        props.getPhoto(info.photo);
         props.updateArrayPhoto(info.photo);
       });
     }
   }
-  const id = props.photo.id;
+  // const id = props.photo.id;
   const url = props.photo.links.html;
   const author = props.photo.user.name;
   const image = props.photo.urls.small;
@@ -103,7 +107,6 @@ function CurrentPhoto(props) {
 function mapStateToProps(state) {
   return {
     photo: state.currentPhoto,
-    photosList: state.photos
   };
 }
 function mapDispatchToProps(dispatch) {

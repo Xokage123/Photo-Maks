@@ -13,13 +13,9 @@ import options from "../CONST";
 
 let checkStart = true;
 // Считываем код
-const code = window.location.search.split('code=')[1];
-const FETCH_URL = `https://unsplash.com/oauth/token?client_id=${options.access_key}&client_secret=${options.secret_key}&redirect_uri=${options.URI}&code=${code}&grant_type=${options.grant_type}`;
+// const code = window.location.search.split('code=')[1];
+const FETCH_URL = `https://unsplash.com/oauth/token?client_id=${options.access_key}&client_secret=${options.secret_key}&redirect_uri=${options.URI}&code=${options.code}&grant_type=${options.grant_type}`;
 getTheToken(FETCH_URL);
-
-window.onscroll = () => {
-  console.log("Листаю!");
-}
 
 function Photos(props) {
   const loadPhotos = () => {
@@ -33,6 +29,18 @@ function Photos(props) {
   if (checkStart) {
     checkStart = false;
     loadPhotos();
+  }
+
+  window.onscroll = (ev) => {
+    let scrollHeight = Math.max(
+      document.body.scrollHeight, document.documentElement.scrollHeight,
+      document.body.offsetHeight, document.documentElement.offsetHeight,
+      document.body.clientHeight, document.documentElement.clientHeight
+    );
+    const value = window.pageYOffset + 500;
+    if (scrollHeight<= value) {
+      loadPhotos();
+    }
   }
 
   return (
@@ -56,14 +64,6 @@ function Photos(props) {
             })
           }
         </ul>
-        <button
-          className={'button-more'}
-          onClick={() => {
-            loadPhotos();
-          }}
-        >
-          Show More
-        </button>
       </main>
       <Footer />
     </>
