@@ -13,16 +13,19 @@ import options from "../CONST";
 
 let checkStart = true;
 // Считываем код
-// const code = window.location.search.split('code=')[1];
-const FETCH_URL = `https://unsplash.com/oauth/token?client_id=${options.access_key}&client_secret=${options.secret_key}&redirect_uri=${options.URI}&code=${options.code}&grant_type=${options.grant_type}`;
+const code = window.location.search.split('code=')[1];
+const FETCH_URL = `https://unsplash.com/oauth/token?client_id=${options.access_key}&client_secret=${options.secret_key}&redirect_uri=${options.URI}&code=${code}&grant_type=${options.grant_type}`;
 getTheToken(FETCH_URL);
+
+let checkTest = true;
 
 function Photos(props) {
   const loadPhotos = () => {
     const page = localStorage.getItem("page");
     unsplashGetListPhotos(page).then((answer) => {
       props.loadPhotos(answer);
-      localStorage.setItem("page", `${Number(page) + 1}`)
+      localStorage.setItem("page", `${Number(page) + 1}`);
+      checkTest = true
     });
   }
 
@@ -37,9 +40,12 @@ function Photos(props) {
       document.body.offsetHeight, document.documentElement.offsetHeight,
       document.body.clientHeight, document.documentElement.clientHeight
     );
-    const value = window.pageYOffset + 500;
+    const value = window.pageYOffset + 700;
     if (scrollHeight<= value) {
-      loadPhotos();
+      if (checkTest) {
+        checkTest = false;
+        loadPhotos();
+      }
     }
   }
 

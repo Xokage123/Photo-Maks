@@ -39,9 +39,11 @@ const styleBack = {
 
 function CurrentPhoto(props) {
   let { id } = useParams();
+  console.log(id);
   useEffect(() => {
     document.body.style.overflow = "hidden";
     unsplashGetPhoto(id).then(photo => {
+      console.log(photo);
       props.getPhoto(photo);
     });
     return () => {
@@ -67,7 +69,6 @@ function CurrentPhoto(props) {
       });
     }
   }
-  // const id = props.photo.id;
   const url = props.photo.links.html;
   const author = props.photo.user.name;
   const image = props.photo.urls.small;

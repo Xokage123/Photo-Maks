@@ -6,9 +6,12 @@ const unsplash = createApi({
 });
 
 export async function unsplashGetPhoto(id) {
-    const answer = await unsplash.photos.get({ photoId: id });
+    const answer = await unsplash.photos.get({
+        photoId: id
+    });
     if (answer.status === 200) {
         const photo = answer.response;
+        console.log(photo);
         return photo;
     }
 }
