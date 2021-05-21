@@ -39,17 +39,15 @@ const styleBack = {
 
 function CurrentPhoto(props) {
   let { id } = useParams();
-  console.log(id);
   useEffect(() => {
     document.body.style.overflow = "hidden";
     unsplashGetPhoto(id).then(photo => {
-      console.log(photo);
       props.getPhoto(photo);
     });
     return () => {
       document.body.style.overflow = "auto";
     }
-  }, []);
+  }, [id, props]);
 
   function likePhoto(id) {
     if (props.photo.liked_by_user) {
