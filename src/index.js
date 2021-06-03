@@ -8,6 +8,8 @@ import currentPhoto from "./reducers/currentPhoto";
 import Authorize from "./connection/authorize";
 import Photos from "./containers/Photos";
 import CurrentPhoto from "./containers/CurrentPhoto";
+import Header from "./case/Header"
+import Footer from "./case/Footer"
 // Импортируем стили
 import './GLOBAL.css';
 
@@ -18,18 +20,22 @@ const store = createStore(rootReducer);
 localStorage.setItem("page", "1");
 
 ReactDOM.render(
-    <Provider store={store}>
-      <BrowserRouter>
-        <Switch>
+  <>
+  <Header />
+  <Provider store={store}>
+    <BrowserRouter>
+      <Switch>
           <Route exact path="/" component={Authorize} />
           <Route exact path="/photos" component={Photos} />
           <Route exact path="/photos/:id">
             <CurrentPhoto />
             <Photos />
-          </Route>
+            </Route>
           <Redirect to={"/"} />
-        </Switch>
-      </BrowserRouter>
-    </Provider>,
+          </Switch>
+        </BrowserRouter>
+      </Provider>
+      <Footer />
+  </>,
   document.getElementById('main')
 );

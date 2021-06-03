@@ -1,12 +1,13 @@
-import options from "../CONST";
-
-
-// Адрес, куда нужно перекинуть пользователя
-const authorizationAddress = `https://unsplash.com/oauth/authorize?client_id=${options.access_key}&redirect_uri=${options.URI}&response_type=${options.response_type}&scope=${options.scope}`;
+import { useHistory } from "react-router-dom";
 
 export default function Authorize () {
-  window.location.assign(authorizationAddress);
+  const history = useHistory();
+  history.push("/photos");  
   return (
     <div>Загрузка...</div>
   )
+}
+
+export const authorizationUser = (addres) => {
+  window.location.assign(addres)
 }

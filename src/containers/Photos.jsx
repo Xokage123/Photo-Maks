@@ -3,20 +3,11 @@ import { connect } from "react-redux";
 import { loadPhotos } from "../actions/actions";
 import { unsplashGetListPhotos } from "../unsplash/unsplash";
 import getFormattedDate from "../utils";
-import { getTheToken } from "../connection/token"
-import Header from "../case/Header";
 import FullPhoto from "./FullPhoto";
-import Footer from "../case/Footer";
 import 'simplebar/dist/simplebar.min.css';
-import options from "../CONST";
 
 
 let checkStart = true;
-// Считываем код
-const code = window.location.search.split('code=')[1];
-const FETCH_URL = `https://unsplash.com/oauth/token?client_id=${options.access_key}&client_secret=${options.secret_key}&redirect_uri=${options.URI}&code=${code}&grant_type=${options.grant_type}`;
-getTheToken(FETCH_URL);
-
 let checkTest = true;
 
 function Photos(props) {
@@ -51,7 +42,6 @@ function Photos(props) {
 
   return (
     <>
-      <Header />
       <main className={'main'}>
         <ul className={'photos-list'}>
           {
@@ -71,7 +61,6 @@ function Photos(props) {
           }
         </ul>
       </main>
-      <Footer />
     </>
   )
 }

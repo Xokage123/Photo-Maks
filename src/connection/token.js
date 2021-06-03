@@ -1,9 +1,11 @@
-export function getTheToken(url) {
-    fetch(url, {
-            method: 'POST'
-        }).then(answer => answer.json())
-        .then(info => {
-            localStorage.setItem("access_token", info.access_token);
-            localStorage.setItem("refresh_token", info.refresh_token);
-        })
+export async function getTheToken(url, setFunction) {
+    const answer = await fetch(url, {
+        method: 'POST'
+    });
+    const infoToken = await answer.json();
+    if (!infoToken.error) {
+        localStorage.setItem("access_token", infoToken.access_token);
+        localStorage.setItem("refresh_token", infoToken.refresh_token);
+        setFunction(true);
+    }
 }

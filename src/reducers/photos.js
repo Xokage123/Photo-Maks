@@ -1,7 +1,6 @@
 const photos = (state = [], action) => {
     switch (action.type) {
         case "LOAD_PHOTOS":
-            console.log(action.photos);
             return [...state, ...action.photos];
         case "UPDATE_PHOTO":
             const newArray = state.map(element => {
@@ -11,6 +10,7 @@ const photos = (state = [], action) => {
                     return element;
                 }
             });
+            console.log(newArray);
             return newArray;
         default:
             return state;

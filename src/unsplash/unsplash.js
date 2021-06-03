@@ -10,6 +10,7 @@ export async function unsplashGetPhoto(id) {
         photoId: id
     });
     if (answer.status === 200) {
+        console.log(answer);
         const photo = answer.response;
         console.log(photo);
         return photo;
