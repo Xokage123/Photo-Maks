@@ -12,7 +12,7 @@ const FETCH_URL = `https://unsplash.com/oauth/token?client_id=${options.access_k
 export default function Header() {
   const [mode, setMode] = useState(false);
   useEffect(() => {
-    if (Boolean(localStorage.getItem("access_token"))) {
+    if (code) {
       getTheToken(FETCH_URL).then(() => {
         setMode(true);
       });
