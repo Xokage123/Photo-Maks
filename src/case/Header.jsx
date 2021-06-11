@@ -16,12 +16,12 @@ export default function Header() {
       getTheToken(FETCH_URL).then(() => {
         setMode(true);
       });
-    } else {
+    } else if (localStorage.getItem("access_token")) {
       setMode(true);
     }
     return () => {
       localStorage.clear();
-    }
+    };
   }, []);
   return (
     <header className="header">
