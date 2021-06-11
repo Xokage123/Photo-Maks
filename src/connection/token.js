@@ -1,4 +1,4 @@
-export async function getTheToken(url, setFunction) {
+export async function getTheToken(url) {
     const answer = await fetch(url, {
         method: 'POST'
     });
@@ -6,6 +6,5 @@ export async function getTheToken(url, setFunction) {
     if (!infoToken.error) {
         localStorage.setItem("access_token", infoToken.access_token);
         localStorage.setItem("refresh_token", infoToken.refresh_token);
-        setFunction(true);
     }
 }

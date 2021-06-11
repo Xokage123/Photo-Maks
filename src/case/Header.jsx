@@ -14,8 +14,12 @@ export default function Header() {
   useEffect(() => {
     console.log(localStorage.key("access_token"));
     if (!localStorage.key("access_token")) {
-      getTheToken(FETCH_URL, setMode);
-    };
+      getTheToken(FETCH_URL).then(() => {
+        setMode(true);
+      });
+    } else {
+      setMode(true);
+    }
   }, []);
   return (
     <header className="header">
