@@ -14,6 +14,7 @@ export default function Header() {
   useEffect(() => {
     console.log()
     if (!Boolean(localStorage.getItem("access_token"))) {
+      console.log("Дошло!");
       getTheToken(FETCH_URL).then(() => {
         setMode(true);
       });
