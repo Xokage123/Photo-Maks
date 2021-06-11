@@ -1,4 +1,5 @@
 import React from 'react';
+import uuid from 'react-uuid'
 import ReactDOM from 'react-dom';
 import { Route, Switch, Redirect, BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
@@ -25,9 +26,9 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <Switch>
-          <Route exact path="/" component={Authorize} />
-          <Route exact path="/photos" component={Photos} />
-          <Route exact path="/photos/:id">
+          <Route key={uuid()} exact path="/" component={Authorize} />
+          <Route key={uuid()} exact path="/photos" component={Photos} />
+          <Route key={uuid()} exact path="/photos/:id">
             <CurrentPhoto />
             <Photos />
             </Route>
