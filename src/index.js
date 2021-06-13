@@ -29,8 +29,8 @@ ReactDOM.render(
           <Route key={uuid()} exact path="/" component={Authorize} />
           <Route key={uuid()} exact path="/photos" component={Photos} />
           <Route key={uuid()} exact path="/photos/:id">
-            <CurrentPhoto />
-            <Photos />
+            <CurrentPhoto key={uuid()}/>
+            <Photos key={uuid()}/>
             </Route>
           <Redirect to={"/"} />
           </Switch>
