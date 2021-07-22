@@ -96,12 +96,12 @@ button:focus {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin-bottom: 10px;
 }
 
 .photos-list {
-    display: flex;
-    flex-wrap: wrap;
+    display: inherit;
+    justify-content: space-around;
+    flex-wrap: inherit;
 }
 
 .photos-item {
@@ -381,8 +381,5 @@ header {
     }
     .logo__user-data {
         display: none;
-    }
-    .photos-list {
-        justify-content: center;
     }
 }
