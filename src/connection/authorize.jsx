@@ -16,5 +16,5 @@ export const authorizationUser = (addres) => {
 // Выйти из аккаунта
  export function unauthorizationUser() {
    localStorage.clear();
-   window.location.reload();
+  //  window.location.reload();
  }

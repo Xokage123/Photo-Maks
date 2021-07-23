@@ -34,7 +34,10 @@ export default function Header() {
         className={`btn ${mode ? "btn-success" : "btn-secondary"}`}
         onClick={
           mode
-            ? () => unauthorizationUser()
+            ? () => {
+                unauthorizationUser();
+                setMode(false);
+              }
             : () => authorizationUser(authorizationAddress)
         }
       >
