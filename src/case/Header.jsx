@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import icon from "../assets/pictures.svg";
-import { authorizationUser } from "../connection/authorize";
+import {
+  authorizationUser,
+  unauthorizationUser,
+} from "../connection/authorize";
 import options from "../CONST";
 import { getTheToken } from "../connection/token";
 
@@ -31,7 +34,7 @@ export default function Header() {
         className={`btn ${mode ? "btn-success" : "btn-secondary"}`}
         onClick={
           mode
-            ? () => alert("Вы уже зарегестрировались!")
+            ? () => unauthorizationUser()
             : () => authorizationUser(authorizationAddress)
         }
       >
