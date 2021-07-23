@@ -8,6 +8,13 @@ export default function Authorize () {
   )
 }
 
+// Авторизация пользователя
 export const authorizationUser = (addres) => {
   window.location.assign(addres)
 }
+
+// Выйти из аккаунта
+ export function unauthorizationUser() {
+   localStorage.clear();
+   window.location.reload();
+ }
