@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { loadPhotos } from "../actions/actions";
 import { unsplashGetListPhotos } from "../unsplash/unsplash";
@@ -6,22 +6,19 @@ import getFormattedDate from "../utils";
 import FullPhoto from "./FullPhoto";
 import "simplebar/dist/simplebar.min.css";
 
-let checkStart = true;
 let checkTest = true;
 
 function Photos(props) {
-  const loadPhotos = () => {
+  useEffect(() => {
+    loadPhotos();
+  }, []);
+
+  function loadPhotos() {
     const page = localStorage.getItem("page");
     unsplashGetListPhotos(page).then((answer) => {
       props.loadPhotos(answer);
       localStorage.setItem("page", `${Number(page) + 1}`);
-      checkTest = true;
     });
-  };
-
-  if (checkStart) {
-    checkStart = false;
-    loadPhotos();
   }
 
   window.onscroll = () => {
