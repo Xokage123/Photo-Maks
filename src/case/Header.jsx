@@ -15,7 +15,9 @@ const FETCH_URL = `https://unsplash.com/oauth/token?client_id=${options.access_k
 export default function Header() {
   const [mode, setMode] = useState(false);
   useEffect(() => {
-    if (!localStorage.getItem("access_token") && code) {
+    if (!localStorage.getItem("authUser")) {
+      setMode(false);
+    } else if (!localStorage.getItem("access_token") && code) {
       getTheToken(FETCH_URL).then(() => {
         setMode(true);
       });
@@ -34,10 +36,7 @@ export default function Header() {
         className={`btn ${mode ? "btn-success" : "btn-secondary"}`}
         onClick={
           mode
-            ? () => {
-                unauthorizationUser();
-                setMode(false);
-              }
+            ? () => unauthorizationUser()
             : () => authorizationUser(authorizationAddress)
         }
       >
