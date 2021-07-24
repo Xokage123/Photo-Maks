@@ -1,44 +1,26 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { loadPhotos } from "../actions/actions";
-import { unsplashGetListPhotos, unsplash } from "../unsplash/unsplash";
+import { unsplash } from "../unsplash/unsplash";
 import getFormattedDate from "../utils";
 import FullPhoto from "./FullPhoto";
 import "simplebar/dist/simplebar.min.css";
 
 let checkTest = true;
-
-function loadPhotosMode(checkUser, setListPhoto) {
-  const page = localStorage.getItem("page");
-
-  unsplash.photos
-    .list({
-      page: page,
-    })
-    .then(async (answer) => answer.response.results)
-    .then((list) => {
-      setListPhoto(list);
-      localStorage.setItem("page", `${Number(page) + 1}`);
-    });
-  // (
-  //   checkUser
-  //     ? unsplashGetListPhotos(page)
-  //     : unsplash.photos
-  //         .list({
-  //           page: page,
-  //         })
-  //         .then(async (answer) => answer.response.results)
-  // )
-  // .then((list) => {
-  //   setListPhoto(list);
-  //   localStorage.setItem("page", `${Number(page) + 1}`);
-  // });
-}
+const page = localStorage.getItem("page");
 
 function Photos(props) {
   useEffect(() => {
-    loadPhotosMode(!!localStorage.getItem("authUser"), props.loadPhotos);
-  }, [props.loadPhotos]);
+    unsplash.photos
+      .list({
+        page: page,
+      })
+      .then(async (answer) => answer.response.results)
+      .then((list) => {
+        props.loadPhotos(list);
+        localStorage.setItem("page", `${Number(page) + 1}`);
+      });
+  }, [props]);
 
   window.onscroll = () => {
     let scrollHeight = Math.max(
@@ -53,7 +35,15 @@ function Photos(props) {
     if (scrollHeight <= value) {
       if (checkTest) {
         checkTest = false;
-        loadPhotosMode(!!localStorage.getItem("authUser"), props.loadPhotos);
+        unsplash.photos
+          .list({
+            page: page,
+          })
+          .then(async (answer) => answer.response.results)
+          .then((list) => {
+            props.loadPhotos(list);
+            localStorage.setItem("page", `${Number(page) + 1}`);
+          });
       }
     }
   };
