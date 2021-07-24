@@ -1,3 +1,10 @@
+import { createApi } from 'unsplash-js';
+import options from "../CONST"
+
+const unsplash = createApi({
+    accessKey: options.access_key,
+});
+
 export async function unsplashGetPhoto(id) {
     const answer = await fetch(`https://api.unsplash.com/photos/${id}`, {
         headers: {
@@ -16,6 +23,14 @@ export async function unsplashGetListPhotos(page) {
     })
     const photos = answer.json();
     return photos;
+}
+
+export async function API_unsplashGetListPhotos(page) {
+    unsplash.photos.list({
+        page: page
+    }).then((list) => {
+        return list;
+    })
 }
 
 export async function unsplashLikePhoto(id) {

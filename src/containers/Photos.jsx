@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { loadPhotos } from "../actions/actions";
-import { unsplashGetListPhotos } from "../unsplash/unsplash";
+import {
+  unsplashGetListPhotos,
+  API_unsplashGetListPhotos,
+} from "../unsplash/unsplash";
 import getFormattedDate from "../utils";
 import FullPhoto from "./FullPhoto";
 import "simplebar/dist/simplebar.min.css";
@@ -10,13 +13,17 @@ let checkTest = true;
 
 function Photos(props) {
   useEffect(() => {
-    loadPhotos();
+    loadPhotos(!!localStorage.getItem("authUser"));
   }, []);
 
-  function loadPhotos() {
+  function loadPhotos(checkUser) {
+    console.log(checkUser);
     const page = localStorage.getItem("page");
-    unsplashGetListPhotos(page).then((answer) => {
-      props.loadPhotos(answer);
+    (checkUser
+      ? unsplashGetListPhotos(page)
+      : API_unsplashGetListPhotos(page)
+    ).then((list) => {
+      props.loadPhotos(list);
       localStorage.setItem("page", `${Number(page) + 1}`);
     });
   }
