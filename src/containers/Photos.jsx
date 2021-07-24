@@ -11,22 +11,22 @@ import "simplebar/dist/simplebar.min.css";
 
 let checkTest = true;
 
-function Photos(props) {
-  useEffect(() => {
-    loadPhotos(!!localStorage.getItem("authUser"));
-  }, []);
-
-  function loadPhotos(checkUser) {
+  function loadPhotosMode(checkUser, setListPhoto) {
     console.log(checkUser);
     const page = localStorage.getItem("page");
     (checkUser
       ? unsplashGetListPhotos(page)
       : API_unsplashGetListPhotos(page)
     ).then((list) => {
-      props.loadPhotos(list);
+      setListPhoto(list);
       localStorage.setItem("page", `${Number(page) + 1}`);
     });
   }
+
+function Photos(props) {
+  useEffect(() => {
+    loadPhotosMode(!!localStorage.getItem("authUser"), props.loadPhotos);
+  }, [props.loadPhotos]);
 
   window.onscroll = () => {
     let scrollHeight = Math.max(
