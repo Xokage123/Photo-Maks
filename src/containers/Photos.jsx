@@ -1,10 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { loadPhotos } from "../actions/actions";
-import {
-  unsplashGetListPhotos,
-  unsplash,
-} from "../unsplash/unsplash";
+import { unsplashGetListPhotos, unsplash } from "../unsplash/unsplash";
 import getFormattedDate from "../utils";
 import FullPhoto from "./FullPhoto";
 import "simplebar/dist/simplebar.min.css";
@@ -16,9 +13,11 @@ function loadPhotosMode(checkUser, setListPhoto) {
   const page = localStorage.getItem("page");
   (checkUser
     ? unsplashGetListPhotos(page)
-    : unsplash.photos.list({
-        page: page,
-      })
+    : unsplash.photos
+        .list({
+          page: page,
+        })
+        .then(async (answer) => answer.response.results)
   ).then((list) => {
     console.log(list);
     setListPhoto(list);
