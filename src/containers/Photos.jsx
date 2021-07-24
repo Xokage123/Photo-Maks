@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { loadPhotos } from "../actions/actions";
 import {
   unsplashGetListPhotos,
-  API_unsplashGetListPhotos,
+  unsplash,
 } from "../unsplash/unsplash";
 import getFormattedDate from "../utils";
 import FullPhoto from "./FullPhoto";
@@ -16,7 +16,9 @@ function loadPhotosMode(checkUser, setListPhoto) {
   const page = localStorage.getItem("page");
   (checkUser
     ? unsplashGetListPhotos(page)
-    : API_unsplashGetListPhotos(page)
+    : unsplash.photos.list({
+        page: page,
+      })
   ).then((list) => {
     console.log(list);
     setListPhoto(list);
