@@ -11,17 +11,18 @@ import "simplebar/dist/simplebar.min.css";
 
 let checkTest = true;
 
-  function loadPhotosMode(checkUser, setListPhoto) {
-    console.log(checkUser);
-    const page = localStorage.getItem("page");
-    (checkUser
-      ? unsplashGetListPhotos(page)
-      : API_unsplashGetListPhotos(page)
-    ).then((list) => {
-      setListPhoto(list);
-      localStorage.setItem("page", `${Number(page) + 1}`);
-    });
-  }
+function loadPhotosMode(checkUser, setListPhoto) {
+  console.log(checkUser);
+  const page = localStorage.getItem("page");
+  (checkUser
+    ? unsplashGetListPhotos(page)
+    : API_unsplashGetListPhotos(page)
+  ).then((list) => {
+    console.log(list);
+    setListPhoto(list);
+    localStorage.setItem("page", `${Number(page) + 1}`);
+  });
+}
 
 function Photos(props) {
   useEffect(() => {
@@ -41,7 +42,7 @@ function Photos(props) {
     if (scrollHeight <= value) {
       if (checkTest) {
         checkTest = false;
-        loadPhotos();
+        loadPhotosMode(!!localStorage.getItem("authUser"), props.loadPhotos);
       }
     }
   };
