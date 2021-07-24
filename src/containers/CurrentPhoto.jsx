@@ -50,7 +50,6 @@ function CurrentPhoto(props) {
       ? unsplashGetPhoto(id)
       : unsplash.photos.get({ photoId: id }).then(async (answer) => answer.response)
     ).then((photo) => {
-      console.log(photo);
       setInfoUser({
         name: photo.user.name,
         link: photo.user.links.html,

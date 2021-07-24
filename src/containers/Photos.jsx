@@ -9,20 +9,30 @@ import "simplebar/dist/simplebar.min.css";
 let checkTest = true;
 
 function loadPhotosMode(checkUser, setListPhoto) {
-  console.log(checkUser);
   const page = localStorage.getItem("page");
-  (checkUser
-    ? unsplashGetListPhotos(page)
-    : unsplash.photos
-        .list({
-          page: page,
-        })
-        .then(async (answer) => answer.response.results)
-  ).then((list) => {
-    console.log(list);
-    setListPhoto(list);
-    localStorage.setItem("page", `${Number(page) + 1}`);
-  });
+
+  unsplash.photos
+    .list({
+      page: page,
+    })
+    .then(async (answer) => answer.response.results)
+    .then((list) => {
+      setListPhoto(list);
+      localStorage.setItem("page", `${Number(page) + 1}`);
+    });
+  // (
+  //   checkUser
+  //     ? unsplashGetListPhotos(page)
+  //     : unsplash.photos
+  //         .list({
+  //           page: page,
+  //         })
+  //         .then(async (answer) => answer.response.results)
+  // )
+  // .then((list) => {
+  //   setListPhoto(list);
+  //   localStorage.setItem("page", `${Number(page) + 1}`);
+  // });
 }
 
 function Photos(props) {
@@ -73,7 +83,6 @@ function Photos(props) {
 
 // Создаем хранилище состояний
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     photos: state.photos,
   };
