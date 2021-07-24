@@ -48,7 +48,7 @@ function CurrentPhoto(props) {
     document.body.style.overflow = "hidden";
     (!!localStorage.getItem("authUser")
       ? unsplashGetPhoto(id)
-      : unsplash.photos.get({ photoId: id })
+      : unsplash.photos.get({ photoId: id }).then(async answer => answer.response)
     ).then((photo) => {
       console.log(photo);
       setInfoUser({
