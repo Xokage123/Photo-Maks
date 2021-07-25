@@ -31,7 +31,7 @@ function Photos(props) {
       document.body.clientHeight,
       document.documentElement.clientHeight
     );
-    const value = window.pageYOffset + 1000;
+    const value = window.pageYOffset + 900;
     if (scrollHeight <= value) {
       if (checkTest) {
         checkTest = false;
