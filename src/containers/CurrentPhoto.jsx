@@ -41,8 +41,6 @@ const styleBack = {
 
 function CurrentPhoto(props) {
   let { id } = useParams();
-  const getPhotoCurrent = props.getPhoto;
-  const listPhoto = props.list;
   const [infoUser, setInfoUser] = useState({});
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -54,12 +52,12 @@ function CurrentPhoto(props) {
         name: photo.user.name,
         link: photo.user.links.html,
       });
-      getPhotoCurrent(photo);
+      props.getPhoto(photo);
     });
     return () => {
       document.body.style.overflow = "auto";
     };
-  }, [getPhotoCurrent, id]);
+  }, [id, props]);
 
   function likePhoto(id) {
     if (props.photo.liked_by_user) {
@@ -109,11 +107,11 @@ function CurrentPhoto(props) {
   const loadContent = <div>Подождите...</div>;
   return (
     <div className="overlay-modal">
-      {listPhoto.map((element, index) => {
+      {props.list.map((element, index) => {
         if (element.id === id) {
           if (index !== 0) {
             return (
-              <Link to={`/photos/${listPhoto[index - 1].id}`}>
+              <Link to={`/photos/${props.list[index - 1].id}`}>
                 <img className="photos__prev" src={arrow} alt="arrow" />
               </Link>
             );
@@ -127,9 +125,9 @@ function CurrentPhoto(props) {
       {props.photo.id ? mainContent : loadContent}
       {props.list.map((element, index) => {
         if (element.id === id) {
-          if (index !== listPhoto.length - 1) {
+          if (index !== props.list.length - 1) {
             return (
-              <Link to={`/photos/${listPhoto[index + 1].id}`}>
+              <Link to={`/photos/${props.list[index + 1].id}`}>
                 <img className="photos__next" src={arrow} alt="arrow" />
               </Link>
             );
