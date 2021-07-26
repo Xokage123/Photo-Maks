@@ -15,6 +15,7 @@ export async function unsplashGetPhoto(id) {
     return photo;
 }
 
+
 export async function unsplashGetListPhotos(page) {
     const answer = await fetch(`https://api.unsplash.com/photos?page=${page}`, {
         headers: {

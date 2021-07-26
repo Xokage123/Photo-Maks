@@ -7,16 +7,16 @@ import FullPhoto from "./FullPhoto";
 import "simplebar/dist/simplebar.min.css";
 
 let checkTest = true;
-const page = localStorage.getItem("page");
 
 function Photos(props) {
   useEffect(() => {
     unsplash.photos
       .list({
-        page: page,
+        page: localStorage.getItem("page"),
       })
       .then(async (answer) => answer.response.results)
       .then((list) => {
+        const page = localStorage.getItem("page");
         props.loadPhotos(list);
         localStorage.setItem("page", `${Number(page) + 1}`);
       });
@@ -31,16 +31,17 @@ function Photos(props) {
       document.body.clientHeight,
       document.documentElement.clientHeight
     );
-    const value = window.pageYOffset + 900;
+    const value = window.pageYOffset + 800;
     if (scrollHeight <= value) {
       if (checkTest) {
         checkTest = false;
         unsplash.photos
           .list({
-            page: page,
+            page: localStorage.getItem("page"),
           })
           .then(async (answer) => answer.response.results)
           .then((list) => {
+            const page = localStorage.getItem("page");
             props.loadPhotos(list);
             localStorage.setItem("page", `${Number(page) + 1}`);
           });
