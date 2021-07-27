@@ -9,6 +9,7 @@ import "simplebar/dist/simplebar.min.css";
 let checkTest = true;
 
 function Photos(props) {
+  const loadPhotos = props.loadPhotos;
   useEffect(() => {
     unsplash.photos
       .list({
@@ -17,9 +18,10 @@ function Photos(props) {
       .then(async (answer) => answer.response.results)
       .then((list) => {
         const page = localStorage.getItem("page");
-        props.loadPhotos(list);
+        loadPhotos(list);
         localStorage.setItem("page", `${Number(page) + 1}`);
       });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   window.onscroll = () => {
