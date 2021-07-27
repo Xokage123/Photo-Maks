@@ -33,7 +33,7 @@ function Photos(props) {
       if (checkTest) {
         checkTest = false;
         unsplashGetListPhotos(page).then((list) => {
-          props.loadPhotos(list);
+          loadPhotos(list);
           localStorage.setItem("page", `${Number(page) + 1}`);
         });
       }
