@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { loadPhotos } from "../actions/actions";
-import { unsplash } from "../unsplash/unsplash";
+import { unsplashGetListPhotos } from "../unsplash/unsplash";
 import getFormattedDate from "../utils";
 import FullPhoto from "./FullPhoto";
 import "simplebar/dist/simplebar.min.css";
@@ -10,18 +10,13 @@ let checkTest = true;
 
 function Photos(props) {
   const loadPhotos = props.loadPhotos;
+  const page = localStorage.getItem("page");
   useEffect(() => {
-    unsplash.photos
-      .list({
-        page: localStorage.getItem("page"),
-      })
-      .then(async (answer) => answer.response.results)
-      .then((list) => {
-        const page = localStorage.getItem("page");
-        loadPhotos(list);
-        localStorage.setItem("page", `${Number(page) + 1}`);
-      });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    unsplashGetListPhotos(page).then((list) => {
+      loadPhotos(list);
+      localStorage.setItem("page", `${Number(page) + 1}`);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   window.onscroll = () => {
@@ -37,16 +32,10 @@ function Photos(props) {
     if (scrollHeight <= value) {
       if (checkTest) {
         checkTest = false;
-        unsplash.photos
-          .list({
-            page: localStorage.getItem("page"),
-          })
-          .then(async (answer) => answer.response.results)
-          .then((list) => {
-            const page = localStorage.getItem("page");
-            props.loadPhotos(list);
-            localStorage.setItem("page", `${Number(page) + 1}`);
-          });
+        unsplashGetListPhotos(page).then((list) => {
+          props.loadPhotos(list);
+          localStorage.setItem("page", `${Number(page) + 1}`);
+        });
       }
     }
   };

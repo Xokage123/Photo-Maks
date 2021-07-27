@@ -17,13 +17,8 @@ export async function unsplashGetPhoto(id) {
 
 
 export async function unsplashGetListPhotos(page) {
-    const answer = await fetch(`https://api.unsplash.com/photos?page=${page}`, {
-        headers: {
-            "Authorization": `Bearer ${localStorage.getItem("access_token")}`
-        }
-    })
-    const photos = answer.json();
-    return photos;
+    const answer = await unsplash.photos.list({ page: page });
+    return answer.response.results;
 }
 
 export async function unsplashLikePhoto(id) {
