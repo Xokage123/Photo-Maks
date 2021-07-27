@@ -20,7 +20,7 @@ function Photos(props) {
         props.loadPhotos(list);
         localStorage.setItem("page", `${Number(page) + 1}`);
       });
-  }, [props]);
+  }, []);
 
   window.onscroll = () => {
     let scrollHeight = Math.max(
