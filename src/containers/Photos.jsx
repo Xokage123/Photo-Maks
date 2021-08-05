@@ -17,13 +17,18 @@ function Photos(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  let clearValue = null;
+
   window.onscroll = () => {
+    clearTimeout(clearValue);
     const value = window.pageYOffset;
     if (window.scrollY <= value) {
-      unsplashGetListPhotos(page).then((list) => {
-        loadPhotos(list);
-        localStorage.setItem("page", `${Number(page) + 1}`);
-      });
+      clearValue = setTimeout(() => {
+        unsplashGetListPhotos(page).then((list) => {
+          loadPhotos(list);
+          localStorage.setItem("page", `${Number(page) + 1}`);
+        });
+      }, 1000);
     }
   };
 
