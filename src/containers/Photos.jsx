@@ -20,16 +20,8 @@ function Photos(props) {
   }, []);
 
   window.onscroll = () => {
-    let scrollHeight = Math.max(
-      document.body.scrollHeight,
-      document.documentElement.scrollHeight,
-      document.body.offsetHeight,
-      document.documentElement.offsetHeight,
-      document.body.clientHeight,
-      document.documentElement.clientHeight
-    );
-    const value = window.pageYOffset + 800;
-    if (scrollHeight <= value) {
+    const value = window.pageYOffset;
+    if (window.scrollY <= value) {
       if (checkTest) {
         checkTest = false;
         unsplashGetListPhotos(page).then((list) => {
