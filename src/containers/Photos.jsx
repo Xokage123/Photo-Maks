@@ -19,11 +19,10 @@ function Photos(props) {
   useEffect(() => {
     window.onscroll = () => {
       clearTimeout(clearValue);
-      const value = window.pageYOffset + 100;
-      if (window.scrollY <= value) {
+      if (window.scrollY <= window.pageYOffset) {
         clearValue = setTimeout(() => {
           getListPhotosWithPage(+localStorage.getItem("page"));
-        }, 1000);
+        }, 500);
       }
     };
     getListPhotosWithPage(+localStorage.getItem("page"));
