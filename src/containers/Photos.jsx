@@ -22,13 +22,10 @@ function Photos(props) {
   window.onscroll = () => {
     const value = window.pageYOffset;
     if (window.scrollY <= value) {
-      if (checkTest) {
-        checkTest = false;
-        unsplashGetListPhotos(page).then((list) => {
-          loadPhotos(list);
-          localStorage.setItem("page", `${Number(page) + 1}`);
-        });
-      }
+      unsplashGetListPhotos(page).then((list) => {
+        loadPhotos(list);
+        localStorage.setItem("page", `${Number(page) + 1}`);
+      });
     }
   };
 
