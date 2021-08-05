@@ -10,24 +10,23 @@ let clearValue = null;
 
 function Photos(props) {
   const loadPhotos = props.loadPhotos;
-  const page = localStorage.getItem("page");
+  const getListPhotosWithPage = (page) => {
+    unsplashGetListPhotos(page).then((list) => {
+      loadPhotos(list);
+      localStorage.setItem("page", `${page + 1}`);
+    });
+  };
   useEffect(() => {
     window.onscroll = () => {
       clearTimeout(clearValue);
-      const value = window.pageYOffset+100;
+      const value = window.pageYOffset + 100;
       if (window.scrollY <= value) {
         clearValue = setTimeout(() => {
-          unsplashGetListPhotos(page).then((list) => {
-            loadPhotos(list);
-            localStorage.setItem("page", `${Number(page) + 1}`);
-          });
+          getListPhotosWithPage(+localStorage.getItem("page"));
         }, 1000);
       }
     };
-    unsplashGetListPhotos(page).then((list) => {
-      loadPhotos(list);
-      localStorage.setItem("page", `${Number(page) + 1}`);
-    });
+    getListPhotosWithPage(+localStorage.getItem("page"));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
