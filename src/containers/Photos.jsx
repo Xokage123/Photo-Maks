@@ -6,8 +6,6 @@ import getFormattedDate from "../utils";
 import FullPhoto from "./FullPhoto";
 import "simplebar/dist/simplebar.min.css";
 
-let checkTest = true;
-
 function Photos(props) {
   const loadPhotos = props.loadPhotos;
   const page = localStorage.getItem("page");
