@@ -46,8 +46,11 @@ function CurrentPhoto(props) {
     document.body.style.overflow = "hidden";
     (!!localStorage.getItem("authUser")
       ? unsplashGetPhoto(id)
-      : unsplash.photos.get({ photoId: id }).then(async (answer) => answer.response)
+      : unsplash.photos
+          .get({ photoId: id })
+          .then(async (answer) => answer.response)
     ).then((photo) => {
+      console.log(photo);
       setInfoUser({
         name: photo.user.name,
         link: photo.user.links.html,
@@ -95,11 +98,15 @@ function CurrentPhoto(props) {
       </h2>
       <img alt="test" className="full-photo__image" src={image} />
       <p className="full-photo__likes-count">Нравится: {likesCount}</p>
-      <button
-        onClick={() => likePhoto(id)}
-        className="like-photo__button"
-        style={props.photo.liked_by_user ? bgImages.liked : bgImages.unliked}
-      />
+      {localStorage.getItem("authUser") === "true" ? (
+        <button
+          onClick={() => likePhoto(id)}
+          className="like-photo__button"
+          style={props.photo.liked_by_user ? bgImages.liked : bgImages.unliked}
+        />
+      ) : (
+        ""
+      )}
       <time className="full-photo__time">{date}</time>
     </article>
   );
