@@ -6,7 +6,7 @@ export const unsplash = createApi({
 });
 
 export async function unsplashGetPhoto(id) {
-    const answer = await unsplash.getPhotophotos.get({ photoId: id });
+    const answer = await unsplash.photos.get({ photoId: id });
     const infoPhoto = await answer.response;
     return infoPhoto;
 }
