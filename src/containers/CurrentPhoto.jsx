@@ -54,7 +54,7 @@ function CurrentPhoto(props) {
       document.body.style.overflow = "auto";
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [id]);
 
   function likePhoto(id) {
     if (props.photo.liked_by_user) {
