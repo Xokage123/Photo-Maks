@@ -6,13 +6,9 @@ export const unsplash = createApi({
 });
 
 export async function unsplashGetPhoto(id) {
-    const answer = await fetch(`https://api.unsplash.com/photos/${id}`, {
-        headers: {
-            "Authorization": `Bearer ${localStorage.getItem("access_token")}`
-        }
-    });
-    const photo = answer.json();
-    return photo;
+    const answer = await unsplash.getPhotophotos.get({ photoId: id });
+    const infoPhoto = await answer.response;
+    return infoPhoto;
 }
 
 
