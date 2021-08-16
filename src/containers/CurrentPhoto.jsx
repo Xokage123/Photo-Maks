@@ -54,7 +54,8 @@ function CurrentPhoto(props) {
     return () => {
       document.body.style.overflow = "auto";
     };
-  }, [id, props]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   function likePhoto(id) {
     if (props.photo.liked_by_user) {
