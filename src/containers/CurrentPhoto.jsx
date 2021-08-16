@@ -44,7 +44,6 @@ function CurrentPhoto(props) {
   useEffect(() => {
     document.body.style.overflow = "hidden";
     unsplashGetPhoto(id).then((photo) => {
-      console.log(photo);
       setInfoUser({
         name: photo.user.name,
         link: photo.user.links.html,
