@@ -10,7 +10,6 @@ import {
 } from "../actions/actions";
 
 import {
-  unsplash,
   unsplashGetPhoto,
   unsplashLikePhoto,
   unsplashUnlikePhoto,
