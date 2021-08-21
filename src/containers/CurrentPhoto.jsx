@@ -92,19 +92,17 @@ function CurrentPhoto(props) {
       </h2>
       <img alt="test" className="full-photo__image" src={image} />
       <p className="full-photo__likes-count">Нравится: {likesCount}</p>
-      {localStorage.getItem("authUser") === "true" ? (
+      {localStorage.getItem("authUser") === "true" ? 
         <button
           onClick={() => likePhoto(id)}
           className="like-photo__button"
           style={props.photo.liked_by_user ? bgImages.liked : bgImages.unliked}
         />
-      ) : (
-        ""
-      )}
+       : ""}
       <time className="full-photo__time">{date}</time>
     </article>
   );
-  // Контекнт при загрузке
+  
   const loadContent = <div>Подождите...</div>;
   return (
     <div className="overlay-modal">

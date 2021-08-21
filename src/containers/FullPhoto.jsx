@@ -12,18 +12,22 @@ function FullPhoto (props) {
     <li className="photo-gallery__item" key={id}>
       <article className="photo-gallery__wrapper">
         <h2 className="photo-gallery__heading">
-          <a target="_blank" href={url} rel="noreferrer">{author}</a>
+          <a target="_blank" href={url} rel="noreferrer">
+            {author}
+          </a>
         </h2>
         <Link to={`/photos/${id}`}>
-          <img alt={'img'} className="photo-gallery__image" src={image} />
+          <img alt={"img"} className="photo-gallery__image" src={image} />
+          {localStorage.getItem("authUser") === "true" ? 
           <div className="photo-gallery__likes-count" style={bgImageLike}>
             {likesCount}
           </div>
+           : ""}
           <time className="photo-gallery__time">{date}</time>
         </Link>
       </article>
     </li>
-  )
+  );
 }
 
 export default FullPhoto;
