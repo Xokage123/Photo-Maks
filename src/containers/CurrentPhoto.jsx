@@ -76,7 +76,6 @@ function CurrentPhoto(props) {
   const image = props.photo.urls.small;
   const likesCount = props.photo.likes;
   const date = getFormattedDate(props.photo.updated_at);
-  // Основной контент
   const mainContent = (
     <article className="full-photo">
       <Link to="/photos">
